@@ -60,7 +60,7 @@ public class ProjectReader {
        
     }
 
-    public static void getFileList(String projectname, String pathname, ArrayList<String> projectFile) throws IOException {
+    public static void getFileList( String pathname, ArrayList<String> projectFile) throws IOException {
       
         File folder = new File(pathname);
         File[] listOfFiles = folder.listFiles();
