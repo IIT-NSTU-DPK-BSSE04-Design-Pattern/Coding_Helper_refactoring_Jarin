@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MethodFind {
+public class Method&ConstractorFind {
 
 
     public void getMethod(String filename, String fileContent, String path, String processfilePath) throws FileNotFoundException, IOException {
@@ -33,7 +33,7 @@ public class MethodFind {
         }
     }
 
-    public void getConstructor(String filename, String fileContent, String path, String processfilePath) throws FileNotFoundException, IOException {
+    public void getConstructor(String filename, String fileContent, String path, String processfilePath) throws IOException {
         int linenumber = 0;
         Pattern classpattern = Pattern.compile("class\\s+([a-zA-Z]+).*");
         Matcher classMatcher = classpattern.matcher(fileContent);
