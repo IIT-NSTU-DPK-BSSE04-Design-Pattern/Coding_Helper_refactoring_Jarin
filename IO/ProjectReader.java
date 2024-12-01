@@ -1,5 +1,4 @@
 package IO;
-
 import console.Command;
 import java.io.File;
 import java.io.IOException;
@@ -15,11 +14,11 @@ import java.util.LinkedHashMap;
 
 public class ProjectReader {
 
-    public static int count;
-    public static int classCount;
-    public static LinkedHashMap<String, String> projectOne = new LinkedHashMap<>();
-    public static LinkedHashMap<String, String> projectTwo = new LinkedHashMap<>();
-    public static ArrayList<String> filename = new ArrayList<>();
+    private static int count;
+    private static int classCount;
+    private static LinkedHashMap<String, String> projectOne = new LinkedHashMap<>();
+    private static LinkedHashMap<String, String> projectTwo = new LinkedHashMap<>();
+    private static ArrayList<String> filename = new ArrayList<>();
 
     public static void fileRead(String fullPath, int i) throws IOException {
         Path folderToWalk = Paths.get(fullPath);
@@ -66,7 +65,6 @@ public class ProjectReader {
         File[] listOfFiles = folder.listFiles();
 
         if (listOfFiles.length == 0) {
-
             folder.delete();
             //   new Command().command();
         }
