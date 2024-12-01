@@ -8,13 +8,13 @@ import java.util.regex.Pattern;
 
 public class MethodFind {
 
-    //  public static ArrayList<String> Methodbody = new ArrayList<>();
+
     public void getMethod(String filename, String fileContent, String path, String processfilePath) throws FileNotFoundException, IOException {
 
         Scanner scan = new Scanner(fileContent);
         int linenumber = 0;
         String file = scan.useDelimiter("\\Z").next().trim();             //^\w+\W\w+\.(\w+){3}\s*\{?+[^;]$ dotall
-        String pattern = "(public|void|protected|private|static|final|public static|private static|protected static|public final|private final|protective final)+\\s*(\\<.*\\>)*\\s*[a-zA-Z]*\\s*\\b([_$a-zA-Z1-9]+)\\b\\s*\\(.*\\)\\s*[^;].*?$";
+        String pattern = "(public|void|protected|private|static|final|public static|private static|protected static|public final|private final|protective final)+\\s*(\\<.*\\>)*\\s*[a-zA-Z]*\\s*\\b([_$a-zA-Z1-9]+)\\b\\s*\\(.*\\)\\s*[^;].*$";
         //  String pattern ="^(public)\\s+[a-zA-Z]*\\s+(\\bmethodName\\b)\\s*\\(\\)[^;]*$";
         Matcher methodMatcher = Pattern.compile(pattern, Pattern.MULTILINE).matcher(file);
         while (methodMatcher.find()) {
@@ -38,16 +38,14 @@ public class MethodFind {
         Pattern classpattern = Pattern.compile("class\\s+([a-zA-Z]+).*");
         Matcher classMatcher = classpattern.matcher(fileContent);
         while (classMatcher.find()) {
-            String className = classMatcher.group(1);
+            //String className = classMatcher.group(1);
             //  System.out.println("DF="+className);
             String classContent = new GrepContent().findBetweenBraces(classMatcher.start(), fileContent);
             Pattern constructorFind = Pattern.compile("(\\b" + classMatcher.group(1) + "\\b)\\s*\\(.*\\)\\s*[^;].*$", Pattern.MULTILINE);
 
             Matcher consMatch = constructorFind.matcher(classContent);
             while (consMatch.find()) {
-                String cons = consMatch.group();
-                //  Search.count++;
-                //   System.out.println("constructor=" + cons);
+
                 String constructor = new GrepContent().findBetweenBraces(consMatch.start(), classContent);
                 String ConsName = consMatch.group().replaceAll("\\{", "").replaceAll("[\r\n]+", " ").trim();
                 linenumber = new GrepContent().getLineNumber(ConsName, path, linenumber);
